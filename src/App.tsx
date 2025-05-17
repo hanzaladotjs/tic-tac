@@ -4,13 +4,19 @@ import "./App.css";
 
 function App() {
   
-  const [color, setColor] = useState<any>("");
+  // const [color, setColor] = useState<any>("");
+  const [mode, setMode] = useState<boolean>(true)
   
   function handleColor() {
-    setColor("bg-black text-white");
+    if(mode == false){
+      setMode(true)
+    } else {
+      setMode(false)
+    }
   }
+
   return (
-    <div className={color}>
+    <div className={!mode ? "bg-black text-white" : "bg-white text-black"}>
       <div className="flex flex-col justify-center items-center min-h-220">
     
         <div className="flex">
@@ -28,7 +34,7 @@ function App() {
           <Button></Button>
           <Button></Button>
         </div>
-        <button onClick={handleColor} className="border border-red-800 p-3 rounded">dark mode </button>
+        <button onClick={handleColor} className="border border-red-800 p-3 rounded"> {mode ? "dark mode" : "light mode"} </button>
       </div>
     </div>
   );
@@ -36,6 +42,7 @@ function App() {
 
 const Button = () :any => {
   const [shape, setShape] = useState<string>("")
+
   function handleShape() {
     setShape("x");
   }
@@ -45,6 +52,7 @@ const Button = () :any => {
          {shape}
       </button>
   )
+
 }
 
 
